@@ -1,0 +1,49 @@
+'use strict';
+
+
+{
+  let kakeme = document.getElementById('kakeme');
+  let bet = document.getElementById('bet');
+  let money = document.getElementById('money');
+  let result = document.getElementById('result');
+  let kaisuu = document.getElementById('kaisuu');
+  // let finalresult = document.getElementById('finalresult');
+
+  const button =  document.querySelector('button');
+
+// 持ち金の初期値。
+  let i = 200;
+  let x = 1;
+
+// １から３までの乱数。
+
+
+button.addEventListener('click',  () => {
+x++;
+let n = Math.floor(Math.random() * 3) + 1;
+// console.log(n);
+if (n == kakeme.value) {
+i = i + bet.value * 2;
+result.textContent = `当たり！プラス${bet.value * 2}円！やったー！`;
+} else {
+i = i - bet.value;
+result.textContent = `はずれ！マイナス${bet.value}円。しょんぼり。`;
+
+}
+money.textContent = `所持金は、${i}円です。`;
+roulette.textContent = `ルーレットの出目は、${n}です。`;
+kaisuu.textContent = `${x}回目の勝負`;
+if ( i < 1){
+  result.textContent = "ゲームオーバー";
+  money.classList.add('inactive');
+  button.classList.add('inactive');
+  kaisuu.classList.add('inactive');
+}
+if ( i > 399) {
+    result.textContent = `ゲームクリア！ ${x}回目の勝負でクリアできました。`;
+    money.classList.add('inactive');
+    button.classList.add('inactive');
+    kaisuu.classList.add('inactive');
+}
+});
+}
